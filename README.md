@@ -1,36 +1,134 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sydney Events Frontend
+
+Frontend application for Sydney Events - A dynamic event listing website.
+
+## Folder Structure
+
+```
+frontend/
+├── src/
+│   ├── actions/                    # Server actions & API calls
+│   │   ├── actions.js              # Main action handlers
+│   │   ├── base_url.js            # API base URL configuration
+│   │   └── default.js             # Default actions
+│   │
+│   ├── app/                        # Next.js App Router
+│   │   ├── (main-landing)/        # Main landing page route group
+│   │   │   └── page.js
+│   │   ├── events/                 # Events page
+│   │   │   └── page.js
+│   │   ├── layout.js               # Root layout
+│   │   ├── page.js                 # Root page (redirects)
+│   │   └── globals.css             # Global styles
+│   │
+│   ├── components/                 # React components
+│   │   ├── events/                 # Event-related components
+│   │   │   ├── EventCard/
+│   │   │   │   ├── EventCard.jsx
+│   │   │   │   └── index.js
+│   │   │   ├── EmailModal/
+│   │   │   │   ├── EmailModal.jsx
+│   │   │   │   └── index.js
+│   │   │   └── EventGrid/
+│   │   │       ├── EventGrid.jsx
+│   │   │       └── index.js
+│   │   ├── ui/                     # shadcn/ui components
+│   │   ├── reusable/               # Reusable components
+│   │   └── shared/                 # Shared utility components
+│   │
+│   ├── contexts/                   # React contexts
+│   │   └── EventsContext.js
+│   │
+│   ├── hooks/                      # Custom React hooks
+│   │   └── useEvents.js
+│   │
+│   ├── lib/                        # Utility libraries
+│   │   ├── constants.js            # App-wide constants
+│   │   └── utils.js                # Utility functions
+│   │
+│   └── store/                      # State management (Zustand)
+│       └── events-store.js
+│
+├── public/                          # Static assets
+├── components.json                  # shadcn/ui configuration
+├── package.json                     # Dependencies
+└── README.md
+```
 
 ## Getting Started
 
-First, run the development server:
+### Installation
+
+```bash
+npm install
+```
+
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+### Start Production Server
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Key Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Event Listing**: Beautiful grid display of events
+- **Email Capture**: Modal for email subscription before ticket redirect
+- **Auto-refresh**: Manual refresh button to update events
+- **Responsive Design**: Mobile-first responsive layout
+- **shadcn/ui**: Modern UI components
 
-## Deploy on Vercel
+## Technologies
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Next.js 16** - React framework with App Router
+- **React 19** - UI library
+- **Tailwind CSS 4** - Styling
+- **shadcn/ui** - UI component library
+- **Zustand** - State management (optional)
+- **React Hook Form** - Form handling
+- **Zod** - Schema validation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
+
+### Actions (`src/actions/`)
+- `actions.js` - All API calls
+- `base_url.js` - Base URL configuration
+- `default.js` - Default action handlers
+
+### Components (`src/components/`)
+- `events/` - Event-related components
+- `ui/` - shadcn/ui primitives
+- `reusable/` - Reusable components
+- `shared/` - Shared utility components
+
+### App Router (`src/app/`)
+- Route groups for organizing pages
+- Layouts for shared UI
+- Pages for different routes
+
+## Environment Variables
+
+Create a `.env.local` file:
+
+```env
+# Backend Server URL
+NEXT_PUBLIC_BACKEND_URL=http://localhost:3001
+
+# Frontend URL (optional)
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+```
+
+**Note:** All API calls are made through `actions.js` which connects directly to the backend server (Express) running on port 3001.
